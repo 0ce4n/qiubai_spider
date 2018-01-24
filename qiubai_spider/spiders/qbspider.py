@@ -1,4 +1,7 @@
 # -*-coding: utf-8 -*-
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
 import scrapy
 from bs4 import BeautifulSoup as BS
 import re
@@ -8,7 +11,7 @@ class QiubaiSpider(scrapy.Spider):
 
 	def __init__(self, *args, **kwargs):
 		super(QiubaiSpider,self).__init__(*args,**kwargs)
-		self.first_url = 'https://www.qiushibaike.com/'
+		self.first_url = 'http://www.qiushibaike.com/'
 		self.url_len = len(self.first_url)
 		user_agent = 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36'
 		self.headers = {'User-Agent': user_agent}
@@ -23,7 +26,7 @@ class QiubaiSpider(scrapy.Spider):
 			try:
 				link = user_link['href']
 				full_link = self.first_url[0:self.url_len-1] + str(link)	
-				yield scrapy.Request(full_link, headers = self.headers,callback = self.parse)
+				yield scrapy.Request(full_link, headers = self.headers,callback = self.get_content)
 			except:
 				print 'get user content error!'
 
