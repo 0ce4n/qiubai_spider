@@ -18,8 +18,9 @@ class ContentItem(scrapy.Item):
 	user_gender = scrapy.Field()
 	user_age = scrapy.Field()
 	user_content = scrapy.Field()
-
+	img_url = scrapy.Field()
+	img_path = scrapy.Field()
+	
 class ImgItem(scrapy.Item):
 	img_url = scrapy.Field()
 	img_path = scrapy.Field()
-	img_content = scrapy.Field()
